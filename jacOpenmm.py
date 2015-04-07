@@ -89,7 +89,7 @@ print str(NsPerDay)  + " nS/day"
 
 # Refs
 # Python API docs
-# https://simtk.org/api_docs/openmm/api5_1/python/
+# https://simtk.org/api_docs/openmm/api6_1/python/
 
 
 
@@ -134,3 +134,5 @@ print str(NsPerDay)  + " nS/day"
 
 # OpenMM 6.2.0/CUDA 6.5, K40c, ecc on		57.30 ns/day	(30.15 run time)
 # OpenMM 6.2.0/OpenCL 6.5, K40c, ecc on		47.23 ns/day	(36.59 run time)
+
+# AMBER 14.0.1 / CUDA 6.5, K40c, ecc on         108.69 ns/day   (15.93 run time)

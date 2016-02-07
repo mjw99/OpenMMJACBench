@@ -12,8 +12,8 @@ import time
 ## Platform
 ################
 
-platform = openmm.Platform_getPlatformByName("OpenCL")
-#platform = openmm.Platform_getPlatformByName("CUDA")
+#platform = openmm.Platform_getPlatformByName("OpenCL")
+platform = openmm.Platform_getPlatformByName("CUDA")
 #platform = openmm.Platform_getPlatformByName("Reference")
 
 
@@ -22,9 +22,9 @@ platformProperties = {}
 ################
 
 # OpenCL
-platformProperties['OpenCLPrecision'] = 'mixed'
+#platformProperties['OpenCLPrecision'] = 'mixed'
 # CUDA 
-#platformProperties['CudaPrecision'] = 'mixed'
+platformProperties['CudaPrecision'] = 'mixed'
 
 ## Parallel GPUs
 ################
@@ -34,12 +34,12 @@ platformProperties['OpenCLPrecision'] = 'mixed'
 #OpenCL parallel
 #platformProperties['OpenCLDeviceIndex'] = '0,1,2'
 #platformProperties['OpenCLDeviceIndex'] = '1'
-platformProperties['OpenCLDeviceIndex'] = '0'
+#platformProperties['OpenCLDeviceIndex'] = '0'
 
 # CUDA parallel
 #platformProperties['CudaDeviceIndex'] = '0,1,2'
 #platformProperties['CudaDeviceIndex'] = '1'
-#platformProperties['CudaDeviceIndex'] = '0'
+platformProperties['CudaDeviceIndex'] = '0'
 
 prmtop = AmberPrmtopFile('prmtop')
 inpcrd = AmberInpcrdFile('inpcrd',  loadVelocities=True, loadBoxVectors=True)

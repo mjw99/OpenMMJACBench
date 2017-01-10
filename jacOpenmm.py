@@ -74,7 +74,7 @@ simulation.context.setPositions(inpcrd.positions)
 simulation.context.setVelocities(inpcrd.velocities)
 
 simulation.reporters.append(PDBReporter('output.pdb', 1000))
-simulation.reporters.append(StateDataReporter(stdout, 1000, step=True, time=True,  totalEnergy=True, kineticEnergy=True, potentialEnergy=True, temperature=True))
+simulation.reporters.append(StateDataReporter(stdout, 1000, step=True, time=True,  totalEnergy=True, kineticEnergy=True, potentialEnergy=True, temperature=True, progress=True, totalSteps=10000, speed=True))
 
 start_time = time.time()
 simulation.step(10000) # i.e. 20,000 fs == 20 ps == 0.02 ns

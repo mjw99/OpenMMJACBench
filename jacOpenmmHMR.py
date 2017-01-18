@@ -39,7 +39,7 @@ platformProperties['CudaPrecision'] = 'mixed'
 # CUDA parallel
 #platformProperties['CudaDeviceIndex'] = '0,1,2'
 #platformProperties['CudaDeviceIndex'] = '1'
-platformProperties['CudaDeviceIndex'] = '1'
+platformProperties['CudaDeviceIndex'] = '0'
 
 prmtop = AmberPrmtopFile('prmtop')
 inpcrd = AmberInpcrdFile('inpcrd',  loadVelocities=True, loadBoxVectors=True)

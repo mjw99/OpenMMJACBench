@@ -1,5 +1,15 @@
 #!/usr/bin/python2.7
 # DHFR rRESPA Benchmark using OpenMM
+#
+# 12 fs outer timestep
+#  6 fs non-bonded far
+#           long-range electrostatic interaction
+#  4 fs non-bonded near
+#           van der Waals and short-range electrostatic interactions
+#  2 bonded
+#
+# refs:
+# http://docs.openmm.org/7.0.0/api-python/generated/simtk.openmm.mtsintegrator.MTSIntegrator.html
 
 
 from simtk.openmm.app import *
@@ -57,9 +67,21 @@ for i in range(system.getNumForces()):
       system.getForce(i).setPMEParameters(3.9467, 64, 64, 64)
 
 # rRESPA
-nonbonded = [f for f in system.getForces() if isinstance(f, NonbondedForce)][0]
-nonbonded.setReciprocalSpaceForceGroup(1)
-integrator = MTSIntegrator(4*femtoseconds, [(1,1), (0,2)])
+# By default, all forces are in force group 0, hence no need to mark
+# the bonded forces
+
+# Non-bonded near: van der Waals and short-range electrostatic interactions
+near = [f for f in system.getForces() if isinstance(f, NonbondedForce)][0]
+near.setForceGroup(1)
+
+# Non-bonded far: long-range electrostatic interactions
+far = [f for f in system.getForces() if isinstance(f, NonbondedForce)][0]
+far.setReciprocalSpaceForceGroup(2)
+
+#                                             far    near   bonded
+integrator = MTSIntegrator(12*femtoseconds, [(2,2), (1,3), (0,6)])
+
+
 
 simulation = Simulation(prmtop.topology, system, integrator, platform, platformProperties)
 
@@ -79,13 +101,13 @@ simulation.reporters.append(PDBReporter('output.pdb', 1000))
 simulation.reporters.append(StateDataReporter(stdout, 1000, step=True, time=True,  totalEnergy=True, kineticEnergy=True, potentialEnergy=True, temperature=True, progress=True, totalSteps=10000, speed=True))
 
 start_time = time.time()
-simulation.step(10000) # i.e. 40,000 fs == 40 ps == 0.04 ns
+simulation.step(10000) # i.e. 120,000 fs == 120 ps == 0.12 ns
 
-# If it takes 100 seconds to run 0.04 ns,
-# then it will take 1/0.04 (== 25)  * 100s to run one ns.
+# If it takes 100 seconds to run 0.12 ns,
+# then it will take 1/0.12  * 100s to run one ns.
 totalDynamicsRunTimeInSeconds = time.time() - start_time
 
-timeNeedToRunOneNsinSeconds = (1/0.04) * totalDynamicsRunTimeInSeconds
+timeNeedToRunOneNsinSeconds = (1/0.12) * totalDynamicsRunTimeInSeconds
 
 NsPerDay = 86400 / timeNeedToRunOneNsinSeconds
 

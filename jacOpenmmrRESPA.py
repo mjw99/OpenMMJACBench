@@ -6,10 +6,12 @@
 #           long-range electrostatic interaction
 #  4 fs non-bonded near
 #           van der Waals and short-range electrostatic interactions
-#  2 bonded
+#  2 fs bonded
 #
 # refs:
 # http://docs.openmm.org/7.0.0/api-python/generated/simtk.openmm.mtsintegrator.MTSIntegrator.html
+# http://dx.doi.org/10.1063/1.460004
+# http://dx.doi.org/10.1063/1.463137
 
 
 from simtk.openmm.app import *

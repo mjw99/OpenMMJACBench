@@ -1,4 +1,4 @@
-#!/usr/bin/python2.7
+#!/usr/bin/env python
 # DHFR Benchmark using OpenMM
 
 from simtk.openmm import app

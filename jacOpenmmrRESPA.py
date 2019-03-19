@@ -87,14 +87,14 @@ integrator = mm.MTSIntegrator(12*unit.femtoseconds, [(2,2), (1,3), (0,6)])
 
 simulation = app.Simulation(prmtop.topology, system, integrator, platform, platformProperties)
 
-print "OpenMM version: %s" % (simulation.context.getPlatform().getOpenMMVersion())
-print "Platform: %s" % (simulation.context.getPlatform().getName())
+print("OpenMM version: %s" % simulation.context.getPlatform().getOpenMMVersion())
+print("Platform: %s" % simulation.context.getPlatform().getName())
 for item in simulation.context.getPlatform().getPropertyNames():
-  print "%s: %s" % (item, simulation.context.getPlatform().getPropertyValue(simulation.context,item))
+  print("%s: %s" % (item, simulation.context.getPlatform().getPropertyValue(simulation.context,item)))
 
-print ""
-print "Number of atoms %i"      % len(inpcrd.positions)
-print "Number of velocities %i" % len(inpcrd.velocities)
+print()
+print("Number of atoms %i"      % len(inpcrd.positions))
+print("Number of velocities %i" % len(inpcrd.velocities))
 
 simulation.context.setPositions(inpcrd.positions)
 simulation.context.setVelocities(inpcrd.velocities)
@@ -114,8 +114,7 @@ timeNeedToRunOneNsinSeconds = (1/0.12) * totalDynamicsRunTimeInSeconds
 NsPerDay = 86400 / timeNeedToRunOneNsinSeconds
 
 
-print str(totalDynamicsRunTimeInSeconds) + " seconds"
-print str(timeNeedToRunOneNsinSeconds) + " is the time needed to run 1 ns"
-print str(NsPerDay)  + " ns/day"
-
+print("%f seconds" % totalDynamicsRunTimeInSeconds)
+print("%f is the time needed to run 1 ns" % timeNeedToRunOneNsinSeconds)
+print("%f ns/day" % NsPerDay)
 

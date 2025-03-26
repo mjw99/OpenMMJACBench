@@ -11,9 +11,9 @@ import time
 ## Platform
 ################
 
-#platform = mm.Platform_getPlatformByName("OpenCL")
-platform = mm.Platform_getPlatformByName("CUDA")
-#platform = mm.Platform_getPlatformByName("Reference")
+#platform = mm.Platform.getPlatformByName("OpenCL")
+platform = mm.Platform.getPlatformByName("CUDA")
+#platform = mm.Platform.getPlatformByName("Reference")
 
 
 platformProperties = {}
